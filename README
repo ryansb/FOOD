@@ -1,0 +1,24 @@
+Sean Jones
+
+P.O.O.P.S. or Parser Of On-campus Preferred Specials
+
+A python script that takes menu items from RIT restaurants
+(not including petals and henry's) so that you may find out
+what is available to eat today.  
+
+P.O.O.P.S. offers the user a simple command line UI, giving
+you the choice to pick any restaurant available or to quit.
+I am looking into adding more functionality, but for now,
+that is all that is available.
+
+Currently, the food listed is printed to the screen in
+lexicographical order.  I am working on formatting like the
+following:
+
+Bar or Grill name
+   - Food items available
+
+The way that RIT's dining services puts the menus on thier
+websites is not consistant so making all restaurants
+formatted similar to the example above could be rather
+challenging, for me at least.
