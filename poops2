@@ -13,7 +13,7 @@ from os import system
 import urllib2, time
 
 
-if version.split()[0] == "3.1.2":
+if version.split()[0] >= "3":
     print("This won't run unless you are using python version 2.*")
     sys.exit(1)
 
