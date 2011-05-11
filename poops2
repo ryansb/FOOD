@@ -120,7 +120,8 @@ def fixString(string):
     if b[0] == " ":
         b = b[1:]
     c = b.lower()
-    return c
+    d = c[0].upper() + c[1:]
+    return d
 
 def main():
 
