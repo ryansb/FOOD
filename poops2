@@ -153,8 +153,8 @@ def main():
     print "==================================================="
     choice = raw_input("Enter your menu choice [1-6 or q]: ")
 
-    if choice == '1':
-        brickCityCafe.constructList()
+    if  int(choice) >= 1 and int(choice) <= 6:
+        restaurants[int(choice)-1].constructList()
         choice2 = raw_input("Hit the Enter key to go back to the menu, or 'q' to quit. ")
 
         if choice2 == "q":
@@ -163,56 +163,6 @@ def main():
         else:
             main()
 
-    elif choice == '2':
-        commons.constructList()
-        choice2 = raw_input("Hit the Enter key to go back to the menu, or 'q' to quit. ")
-        
-        if choice2 == "q":
-            return
-        
-        else:
-            main()
-    
-    elif choice == '3':
-        crossRoads.constructList()
-        choice2 = raw_input("Hit the Enter key to go back to the menu, or 'q' to quit. ")
-    
-        if choice2 == "q":
-            return
-        
-        else:
-            main()
-    
-    elif choice == '4':
-        globalVillage.constructList()
-        choice2 = raw_input("Hit the Enter key to go back to the menu, or 'q' to quit. ")
-        
-        if choice2 == "q":
-            return
-        
-        else:
-            main()
-    
-    elif choice == '5':
-        gracies.constructList()
-        choice2 = raw_input("Hit the Enter key to go back to the menu, or 'q' to quit. ")
-        
-        if choice2 == "q":
-            return
-        
-        else:
-            main()
-    
-    elif choice == '6':
-        ritz.constructList()
-        choice2 = raw_input("Hit the Enter key to go back to the menu, or 'q' to quit. ")
-        
-        if choice2 == "q":
-            return
-        
-        else:
-            main()
-    
     elif choice == 'q':
         return
     
