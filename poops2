@@ -105,13 +105,6 @@ class Restaurant(object):
                     print j
         print "\n"
         
-    def parseText(self):
-        File = open(self.filename,'r')
-        for line in File:
-            self.contents.append(line.split())
-        File.close()
-
-
 brickCityCafe = Restaurant("http://finweb.rit.edu/diningservices/brickcity")
 commons = Restaurant("http://finweb.rit.edu/diningservices/commons")
 crossRoads = Restaurant("http://finweb.rit.edu/diningservices/crossroads")
@@ -181,7 +174,7 @@ def main():
     
     elif choice == '3':
         crossRoads.constructList()
-        choice2 = raw_input("Hit any key to go back to the menu, or 'q' to quit. ")
+        choice2 = raw_input("Hit the Enter key to go back to the menu, or 'q' to quit. ")
     
         if choice2 == "q":
             return
@@ -191,7 +184,7 @@ def main():
     
     elif choice == '4':
         globalVillage.constructList()
-        choice2 = raw_input("Hit any key (except for 'q') to go back to the menu, or 'q' to quit. ")
+        choice2 = raw_input("Hit the Enter key to go back to the menu, or 'q' to quit. ")
         
         if choice2 == "q":
             return
@@ -201,7 +194,7 @@ def main():
     
     elif choice == '5':
         gracies.constructList()
-        choice2 = raw_input("Hit any key (except for 'q') to go back to the menu, or 'q' to quit. ")
+        choice2 = raw_input("Hit the Enter key to go back to the menu, or 'q' to quit. ")
         
         if choice2 == "q":
             return
@@ -211,7 +204,7 @@ def main():
     
     elif choice == '6':
         ritz.constructList()
-        choice2 = raw_input("Hit any key (except for 'q') to go back to the menu, or 'q' to quit. ")
+        choice2 = raw_input("Hit the Enter key to go back to the menu, or 'q' to quit. ")
         
         if choice2 == "q":
             return
