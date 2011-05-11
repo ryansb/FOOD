@@ -153,7 +153,7 @@ def main():
     print "==================================================="
     choice = raw_input("Enter your menu choice [1-6 or q]: ")
 
-    if  int(choice) >= 1 and int(choice) <= 6:
+    if type(choice) == 'int' and int(choice) >= 1 and int(choice) <= 6:
         restaurants[int(choice)-1].constructList()
         choice2 = raw_input("Hit the Enter key to go back to the menu, or 'q' to quit. ")
 
