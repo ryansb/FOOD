@@ -9,13 +9,12 @@
 
 from BeautifulSoup import BeautifulSoup, NavigableString
 from sys import version, exit
-from os import system
 import urllib2, time
 
 
 if version.split()[0] >= "3":
     print("This won't run unless you are using python version 2.*")
-    sys.exit(1)
+    exit(1)
 
 class Restaurant(object):
     __slots__ = ("link", "contents", "undesireables", "data", "elements",
@@ -81,8 +80,8 @@ class Restaurant(object):
                 string = string.strip()
                 if string != "":
                     if string not in self.undesireables:
-                        self.contents.add(fixString(string))
-                        self.elements.append(fixString(string))
+                        self.contents.add(fix_string(string))
+                        self.elements.append(fix_string(string))
             else:
                 self.printText(tag)
 
@@ -103,17 +102,17 @@ class Restaurant(object):
                     print j
         print "\n"
 
-brickCityCafe = Restaurant("http://finweb.rit.edu/diningservices/brickcity")
+brick_city_cafe = Restaurant("http://finweb.rit.edu/diningservices/brickcity")
 commons = Restaurant("http://finweb.rit.edu/diningservices/commons")
 crossRoads = Restaurant("http://finweb.rit.edu/diningservices/crossroads")
-globalVillage = Restaurant(
+global_village = Restaurant(
 "http://finweb.rit.edu/diningservices/gvcantinagrille")
 gracies = Restaurant("http://finweb.rit.edu/diningservices/gracies")
 ritz = Restaurant("http://finweb.rit.edu/diningservices/ritzsportszone")
 
-restaurants = [brickCityCafe, commons, crossRoads, globalVillage, gracies, ritz]
+restaurants = [brick_city_cafe, commons, crossRoads, global_village, gracies, ritz]
 
-def fixString(string):
+def fix_string(string):
     a = string.replace("&amp;", "&")
     b = a.replace("*", "")
     if b[0] == " ":
