@@ -8,14 +8,14 @@
 """
 
 from BeautifulSoup import BeautifulSoup, NavigableString
-from sys import version, exit
+from sys import version
 from urllib2 import urlopen
 from time import ctime
 
 
 if version.split()[0] >= "3":
     print("This won't run unless you are using python version 2.*")
-    exit(1)
+    exit()
 
 
 class Restaurant(object):
