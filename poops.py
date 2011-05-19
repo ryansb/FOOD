@@ -8,7 +8,7 @@
 """
 
 from BeautifulSoup import BeautifulSoup, NavigableString
-from sys import version#, exit
+from sys import version
 from urllib2 import urlopen
 from time import ctime
 
@@ -21,9 +21,10 @@ if version.split()[0] >= "3":
 class Restaurant(object):
     """The object contain"""
     __slots__ = ("link", "contents", "undesireables", "data", "elements",
-                 "new_list")
+                    "new_list")
 
     def __init__(self, link):
+        """Initialize default values"""
         self.link = link
         self.contents = set()
         self.undesireables = set()
@@ -31,23 +32,24 @@ class Restaurant(object):
         self.elements = []
         self.new_list = []
         lst = ["BUSINESS SERVICES", "Human Resources", "Digital Den", "Forms",
-        "Napkin Dispenser/Table Tent Policy", "Legal Affairs", "Leadership Staff",
-        "Resources", "All Day", "Information &amp; Technology Services",
-        "RISK MANAGEMENT", "Bookstore", "Italian Entree",
-        "Specialty Wraps-located at Deli", "Bottle Return", "Training",
+        "Napkin Dispenser/Table Tent Policy", "Legal Affairs",
+        "Leadership Staff", "Resources", "All Day",
+        "Information &amp; Technology Services", "RISK MANAGEMENT",
+        "Bookstore", "Italian Entree", "Specialty Wraps-located at Deli",
+        "Bottle Return", "Training",
         "Institute Audit, Compliance &amp; Advisement", "Weekly Menus",
         "Directories", "Facilities Management", "Parking &amp; Transportation",
-        "Student Auxiliary Services", "Housing Operations", "Tiger Bucks Program",
-        "Mongo's Grill", "Gordon Field House", "Hours", "Controller",
-        "Mongo's", "Senior Vice President", "Student Financial Services",
-        "About Us/Contacts", "Budget", "Dining Services", "In The News",
-        "Special Delivery", "Global Risk Management Services",
-        "Print &amp; Postal Hub", "Public Safety", "Mexican",
-        "EMPLOYMENT SERVICES", "Center for Professional Development",
-        "FINANCIAL SERVICES", "A-Z Index", "Nutrition", "The Works",
-        "Systems &amp; Technologies", "Hot Meals Under $6",
-        "Information Security", "Career Zone", "Search", "Vending",
-        "Procurement Services", "Ethics &amp; Compliance",
+        "Student Auxiliary Services", "Housing Operations",
+        "Tiger Bucks Program", "Mongo's Grill", "Gordon Field House", "Hours",
+        "Controller", "Mongo's", "Senior Vice President",
+        "Student Financial Services", "About Us/Contacts", "Budget",
+        "Dining Services", "In The News", "Special Delivery",
+        "Global Risk Management Services", "Print &amp; Postal Hub",
+        "Public Safety", "Mexican", "EMPLOYMENT SERVICES",
+        "Center for Professional Development", "FINANCIAL SERVICES",
+        "A-Z Index", "Nutrition", "The Works", "Systems &amp; Technologies",
+        "Hot Meals Under $6", "Information Security", "Career Zone", "Search",
+        "Vending", "Procurement Services", "Ethics &amp; Compliance",
         "Institutional Research", "Gift Cards",  "Bakery", "Veggie",
         "Meal Plans and Debit Plans", "Environmental Health &amp; Safety",
         "Locations", "Emergency Preparedness", "Business Continuity",
@@ -70,11 +72,13 @@ class Restaurant(object):
             self.undesireables.add(i)
 
     def scrape_text(self):
+        """Open the link and parse it."""
         html = urlopen(self.link).read()
         soup = BeautifulSoup(html)
-        self.printText(soup.findAll("li"))
+        self.print_text(soup.findAll("li"))
 
-    def printText(self, tags):
+    def print_text(self, tags):
+        """Display the text in a nice readable format"""
         for tag in tags:
             if isinstance(tag, NavigableString):
                 string = str(tag)
@@ -84,13 +88,14 @@ class Restaurant(object):
                         self.contents.add(fix_string(string))
                         self.elements.append(fix_string(string))
             else:
-                self.printText(tag)
+                self.print_text(tag)
 
     def construct_list(self):
+        """Organize the list of items"""
         print "\n"
         if len(self.new_list) > 0:
-            for h in self.new_list:
-                print h
+            for item in self.new_list:
+                print item
         elif not len(self.new_list) > 0:
             self.scrape_text()
             if len(self.contents) == 0:
@@ -120,7 +125,6 @@ def fix_string(string):
     correct"""
     lstring = string.replace("&amp;", "&").replace("*", "").strip().lower()
     return lstring[0].upper() + lstring[1:]
-
 
 
 def main():
