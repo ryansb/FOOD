@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-""" poops2
+""" poops.py
     python2.*
     Author: Sean Jones
     Description: My python web scraper that gets the daily dining specials of
@@ -115,13 +115,9 @@ restaurants = [brick_city_cafe, commons, crossRoads, global_village, gracies,
 
 
 def fix_string(string):
-    a = string.replace("&amp;", "&")
-    b = a.replace("*", "")
-    if b[0] == " ":
-        b = b[1:]
-    c = b.lower()
-    d = c[0].upper() + c[1:]
-    return d
+    lstring = string.replace("&amp;", "&").replace("*", "").strip().lower()
+    return lstring[0].upper() + lstring[1:]
+
 
 
 def main():
