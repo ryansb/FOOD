@@ -8,17 +8,18 @@
 """
 
 from BeautifulSoup import BeautifulSoup, NavigableString
-from sys import version, exit
+from sys import version#, exit
 from urllib2 import urlopen
 from time import ctime
 
 
 if version.split()[0] >= "3":
     print("This won't run unless you are using python version 2.*")
-    exit(1)
+    exit()
 
 
 class Restaurant(object):
+    """The object contain"""
     __slots__ = ("link", "contents", "undesireables", "data", "elements",
                  "new_list")
 
@@ -53,8 +54,8 @@ class Restaurant(object):
         "F&amp;A LEADERSHIP", "MyRIT", "F&amp;A Home", "Payroll", "Catering",
         "Tiger Bucks", "Student Employment", "Ancho",
         "RIT Inn &amp; Conference Center", "Publications", "Accounting",
-        "Restaurant Vendors", "Gracies", "The Ritz Sports Zone",
-        "Brick City Caf\xc3\xa9", "The Commons", "Choices",
+        "Restaurant Vendors", "GRACIES", "The RITZ Sports Zone",
+        "Brick City Caf\xc3\xa9", "The COMMONS", "Choices",
         "The Caf\xc3\xa9 &amp; Market at the Crossroads", "Dinner", "Lunch",
         "Breakfast", "Better Me", "Same as Lunch",
         "Global Village Cantina and Grille", "Grill Special", "Bar Items",
@@ -102,25 +103,28 @@ class Restaurant(object):
                     print j
         print "\n"
 
-brick_city_cafe = Restaurant("http://finweb.rit.edu/diningservices/brickcity")
-commons = Restaurant("http://finweb.rit.edu/diningservices/commons")
-crossRoads = Restaurant("http://finweb.rit.edu/diningservices/crossroads")
-global_village = Restaurant(
+BRICK_CITY = Restaurant("http://finweb.rit.edu/diningservices/brickcity")
+COMMONS = Restaurant("http://finweb.rit.edu/diningservices/commons")
+CROSSROADS = Restaurant("http://finweb.rit.edu/diningservices/crossroads")
+GLOBAL_VILLAGE = Restaurant(
 "http://finweb.rit.edu/diningservices/gvcantinagrille")
-gracies = Restaurant("http://finweb.rit.edu/diningservices/gracies")
-ritz = Restaurant("http://finweb.rit.edu/diningservices/ritzsportszone")
+GRACIES = Restaurant("http://finweb.rit.edu/diningservices/gracies")
+RITZ = Restaurant("http://finweb.rit.edu/diningservices/ritzsportszone")
 
-restaurants = [brick_city_cafe, commons, crossRoads, global_village, gracies,
-                ritz]
+RESTAURANTS = [BRICK_CITY, COMMONS, CROSSROADS, GLOBAL_VILLAGE, GRACIES,
+                RITZ]
 
 
 def fix_string(string):
+    """Return the string with the & fixed and make sure capitalization is
+    correct"""
     lstring = string.replace("&amp;", "&").replace("*", "").strip().lower()
     return lstring[0].upper() + lstring[1:]
 
 
 
 def main():
+    """Do most of the actual work"""
     header = """
 ---------------------------------------------------
       Parser Of On-campus Preferred Specials
@@ -138,19 +142,20 @@ def main():
 
        Today is {curtime}
 ---------------------------------------------------
-[1] Brick City Cafe"
-[2] Commons"
-[3] Crossroads"
-[4] Global Village Cantina and Grille"
-[5] Gracies"
-[6] Ritz Sports Zone"
-[q] Quit"
+[1] Brick City Cafe
+[2] Commons
+[3] Crossroads
+[4] Global Village Cantina and Grille
+[5] Gracies
+[6] Ritz Sports Zone
+[q] Quit
 ==================================================="""
     print header.format(curtime=ctime())
     choice = raw_input("Enter your menu choice [1-6 or q]: ")
     try:
         if int(choice) >= 1 and int(choice) <= 6:
-            restaurants[int(choice) - 1].construct_list()
+            RESTAURANTS[int(choice) - 1].construct_list()
+
             choice2 = raw_input("Hit the Enter key to go back to the menu, or"
                 + "'q' to quit. ")
             if choice2 == "q":
