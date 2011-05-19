@@ -184,4 +184,6 @@ def main():
                 cont = raw_input("Please press the Enter key... ")
             main()
 
-main()
+
+if __name__ == "__main__":
+    main()
