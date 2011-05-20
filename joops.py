@@ -18,8 +18,8 @@ restaurants = ["http://finweb.rit.edu/diningservices/brickcity",
 
 def services():
 	dict_blob = {"services": []}
-	for i in range(0, len(restaurants) - 1):
-		dict_blob["services"].append(get_menu_dict(restaurants[i]))
+	for serv in restaurants:
+		dict_blob["services"].append(get_menu_dict(serv))
 	return json.dumps(dict_blob)
 
 
@@ -44,3 +44,6 @@ def get_menu_dict(url):
 					].append(unicode(item.string).encode('utf-8'))
 			meal_num += 1
 	return dict_blob
+
+if __name__ == '__main__':
+	print services()
